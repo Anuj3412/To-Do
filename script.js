@@ -1,30 +1,53 @@
 const inputBox = document.getElementById("input-box");
 const taskList = document.getElementById("task-list");
 
-function addTask()
-{
-    if(inputBox.value === ''){
-        alert("You must write something")
-    }
-    else{
-        let li = document.createElement("li");
-        li.innerHTML = inputBox.value;
-        taskList.appendChild(li);
+function addTask() {
+  if (inputBox.value === "") {
+    alert("You must write something");
+  } else {
+    let li = document.createElement("li");
+    li.innerHTML = inputBox.value;
+    taskList.appendChild(li);
 
-        /*******************/
+    /*******************/
 
-        let span = document.createElement("span");
-        span.innerHTML="\u00d7";
-        li.appendChild(span);
-    }
-    inputBox.value = "";
+    let span = document.createElement("span");
+    span.innerHTML = "\u00d7";
+    li.appendChild(span);
+    saveData();
+  }
+  inputBox.value = "";
 }
 
-taskList.addEventListener("click" , function(e){
-    if(e.target.tagName === "LI"){
-        e.target.classList.toggle("checked");
+taskList.addEventListener(
+  "click",
+  function (e) {
+    if (e.target.tagName === "LI") {
+      e.target.classList.toggle("checked");
+      saveData();
+    } else if (e.target.tagName === "SPAN") {
+      e.target.parentElement.remove();
+      saveData();
     }
-    else if(e.target.tagName === "SPAN"){
-        e.target.parentElement.remove();
+  },
+  false
+);
+
+// to add task by pressing enter
+document.addEventListener("keydown" , function(event){
+    if(event.key === "Enter"){
+        addTask();
     }
-} , false);
+    console.log(event.key);
+});
+
+/************************/
+
+function saveData() {
+  localStorage.setItem("data", taskList.innerHTML);
+}
+function showData() {
+  taskList.innerHTML = localStorage.getItem("data");
+}
+
+showData();
