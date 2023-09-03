@@ -29,7 +29,7 @@ This is a simple To-Do app that allows you to manage your tasks efficiently. The
 
 ## Live Demo
 
-You can access the live demo of this app on GitHub Pages: [To-Do App](https://your-Anuj3412.github.io/To-Do/)
+You can access the live demo of this app on GitHub Pages: [To-Do App](https://anuj3412.github.io/To-Do/)
 
 ## Contributing
 
